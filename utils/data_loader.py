@@ -25,7 +25,34 @@ def load_breast_cancer():
 
     return df
 
+def load_mushroom():
+    # Define column names
+    columns = [
+        "class", "cap-shape", "cap-surface", "cap-color", "bruises", "odor",
+        "gill-attachment", "gill-spacing", "gill-size", "gill-color",
+        "stalk-shape", "stalk-root", "stalk-surface-above-ring", "stalk-surface-below-ring",
+        "stalk-color-above-ring", "stalk-color-below-ring", "veil-type", "veil-color",
+        "ring-number", "ring-type", "spore-print-color", "population", "habitat"
+    ]
+    
+  
+    df = pd.read_csv("data/mushroom.csv", header=None, names=columns)
+    
+    # Convert target variable ('class') to numeric:
+    # 'e' (edible) → 0, 'p' (poisonous) → 1
+    df["class"] = df["class"].map({"e": 0, "p": 1})
+    
+
+    class_col = df.pop("class")
+    df["class"] = class_col
+
+    return df
 
 if __name__ == "__main__":
-    df = load_breast_cancer()
-    print(df.head()) 
+  #  print("Breast Cancer Dataset:")
+   # df_bc = load_breast_cancer()
+  #  print(df_bc.head(), "\n")
+
+    print("Mushroom Dataset:")
+    df_mushroom = load_mushroom()
+    print(df_mushroom.head())
