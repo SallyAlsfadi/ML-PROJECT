@@ -26,7 +26,7 @@ def load_breast_cancer():
     return df
 
 def load_mushroom():
-    # Define column names
+   
     columns = [
         "class", "cap-shape", "cap-surface", "cap-color", "bruises", "odor",
         "gill-attachment", "gill-spacing", "gill-size", "gill-color",
@@ -48,11 +48,53 @@ def load_mushroom():
 
     return df
 
+
+
+
+def load_robot_failures():
+ 
+    with open("data/robot_lp1.csv", "r") as file:
+        lines = file.readlines()
+
+
+    clean_lines = [line for line in lines if not line.strip().startswith("normal")]
+
+
+    with open("data/robot_lp1_clean.csv", "w") as file:
+        file.writelines(clean_lines)
+
+    sample_line = clean_lines[0].strip().split()
+    num_features = len(sample_line) - 1 
+
+    
+    feature_names = [f"feature_{i+1}" for i in range(num_features)]
+    column_names = feature_names + ["failure_type"]
+
+   
+    df = pd.read_csv("data/robot_lp1_clean.csv", sep=r"\s+", header=None, names=column_names, engine="python")
+    df.dropna(subset=["failure_type"], inplace=True)
+
+   
+    df["failure_type"] = df["failure_type"].astype(int)
+ 
+    print("Unique failure types:", df["failure_type"].unique())
+
+    return df
+
+
+
+
+
+
 if __name__ == "__main__":
   #  print("Breast Cancer Dataset:")
    # df_bc = load_breast_cancer()
   #  print(df_bc.head(), "\n")
 
-    print("Mushroom Dataset:")
-    df_mushroom = load_mushroom()
-    print(df_mushroom.head())
+    #print("Mushroom Dataset:")
+    #df_mushroom = load_mushroom()
+    #print(df_mushroom.head())
+
+     print("Robot Execution Failures Dataset:")
+     df_robot = load_robot_failures()
+     print(df_robot.head())
