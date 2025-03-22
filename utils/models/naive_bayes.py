@@ -21,6 +21,7 @@ class NaiveBayesClassifier:
         return numerator / denominator
 
     def _predict_instance(self, x):
+        x = np.array(x)
         posteriors = []
 
         for cls in self.classes:
@@ -32,4 +33,5 @@ class NaiveBayesClassifier:
         return self.classes[np.argmax(posteriors)]
 
     def predict(self, X):
+         X = np.array(X)  
         return np.array([self._predict_instance(x) for x in X])
