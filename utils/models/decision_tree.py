@@ -15,9 +15,12 @@ class DecisionTreeClassifier:
         self.tree = None
 
     def fit(self, X, y):
+        X = np.array(X)  
+        y = np.array(y)
         self.tree = self._grow_tree(X, y)
 
     def predict(self, X):
+        X = np.array(X)  
         return np.array([self._traverse_tree(x, self.tree) for x in X])
 
     def _entropy(self, y):
