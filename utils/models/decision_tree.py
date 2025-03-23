@@ -24,8 +24,8 @@ class DecisionTreeClassifier:
         return np.array([self._traverse_tree(x, self.tree) for x in X])
 
     def _entropy(self, y):
-        hist = np.bincount(y)
-        ps = hist / len(y)
+        _, counts = np.unique(y, return_counts=True)
+        ps = counts / len(y)
         return -np.sum([p * np.log2(p) for p in ps if p > 0])
 
     def _information_gain(self, y, X_column, threshold):
@@ -89,5 +89,5 @@ class DecisionTreeClassifier:
         return self._traverse_tree(x, node.right)
 
     def _most_common_label(self, y):
-        counts = np.bincount(y)
-        return np.argmax(counts)
+        values, counts = np.unique(y, return_counts=True)
+        return values[np.argmax(counts)]

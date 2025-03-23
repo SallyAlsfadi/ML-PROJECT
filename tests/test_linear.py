@@ -11,19 +11,17 @@ X_train, y_train, X_test, y_test = train_test_split_features_target(
     df, target_column="quality", test_size=0.2, random_seed=42
 )
 
-
-X_train = X_train.to_numpy()
-y_train = y_train.to_numpy()
-X_test = X_test.to_numpy()
-y_test = y_test.to_numpy()
+# No need to convert to numpy arrays, since train_test_split already returns numpy arrays
+# X_train = X_train.to_numpy()  # Remove this line
+# y_train = y_train.to_numpy()  # Remove this line
+# X_test = X_test.to_numpy()  # Remove this line
+# y_test = y_test.to_numpy()  # Remove this line
 
 # Train your linear regression model
 model = LinearRegression(lr=0.01, n_iters=1000)
 model.fit(X_train, y_train)
 
-
 y_pred = model.predict(X_test)
-
 
 mse = mean_squared_error(y_test, y_pred)
 

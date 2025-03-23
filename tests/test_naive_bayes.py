@@ -1,3 +1,4 @@
+
 import numpy as np
 from utils.data_loader import load_breast_cancer, train_test_split_features_target
 from utils.models.naive_bayes import NaiveBayesClassifier
@@ -23,3 +24,4 @@ print("Precision:", round(precision(y_test, y_pred), 4))
 print("Recall:", round(recall(y_test, y_pred), 4))
 print("F1 Score:", round(f1_score(y_test, y_pred), 4))
 print("Confusion Matrix:\n", confusion_matrix(y_test, y_pred))
+

@@ -1,6 +1,5 @@
 import numpy as np
 
-
 class LogisticRegression:
     def __init__(self, lr=0.01, n_iters=1000):
         self.lr = lr
@@ -9,12 +8,15 @@ class LogisticRegression:
         self.bias = None
 
     def sigmoid(self, x):
-        x = np.clip(x, -500, 500) 
+        x = np.clip(x, -500, 500)  # Avoid overflow
         return 1 / (1 + np.exp(-x))
 
     def fit(self, X, y):
-        n_samples, n_features = X.shape
+        # Ensure X and y are NumPy arrays
+        X = np.array(X, dtype=float)
+        y = np.array(y, dtype=float)
 
+        n_samples, n_features = X.shape
         self.weights = np.zeros(n_features)
         self.bias = 0
 
@@ -29,6 +31,7 @@ class LogisticRegression:
             self.bias -= self.lr * db
 
     def predict(self, X):
+        X = np.array(X, dtype=float)
         linear_model = np.dot(X, self.weights) + self.bias
         y_predicted = self.sigmoid(linear_model)
-        return [1 if i >= 0.5 else 0 for i in y_predicted]
+        return np.array([1 if i >= 0.5 else 0 for i in y_predicted])
