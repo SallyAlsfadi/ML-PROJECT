@@ -7,11 +7,10 @@ This project implements core machine learning models from scratch in Python, wit
 1. Clone the repository:
 
 ```bash
-git clone <repo-url>
+git clone https://github.com/SallyAlsfadi/ML-PROJECT.git
 cd ml-project-sallyalsafadi
 
-python3 -m venv venv
-source venv/bin/activate  # On Windows use: venv\\Scripts\\activate
+
 
 pip install -r requirements.txt
 
