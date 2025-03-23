@@ -4,6 +4,23 @@ This project implements core machine learning models from scratch in Python, wit
 
 ## Installation
 
+Installing pip on Windows
+Step 1: Download get-pip.py via curl
+
+If you have Python installed and curl is available (usually included in Windows 10+), run:
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+
+If curl is not recognized, you can try using Invoke-WebRequest in PowerShell:
+Step 2: Run the script with Python
+python get-pip.py
+
+Or, if you're using the py launcher:
+py get-pip.py
+
+Step 3: Verify installation
+pip --version
+C:\Users\<YourUsername>\AppData\Local\Programs\Python\PythonXY\Scripts\
+After installation, if pip is still not recognized, add the Python Scripts directory to your system PATH. It’s usually located at:
 1. Clone the repository:
 
 ```bash
