@@ -1,6 +1,22 @@
 import pandas as pd
 import os
 import numpy as np
+
+"""
+Data Preprocessing Summary:
+
+This file includes preprocessing functions for multiple datasets, each tailored to its specific structure.
+- Irrelevant or unnecessary columns are removed ('id' in the breast cancer dataset).
+- Categorical features are encoded using label encoding or factorization (mushroom and heart failure datasets).
+- Numerical features are normalized using manual Min-Max Scaling to ensure all features are on the same scale.
+- Missing values are handled by dropping rows with nulls (in the heart failure dataset).
+- Target variables are binarized for classification tasks (quality >= 7 in wine dataset becomes class 1).
+- The robot dataset is cleaned to remove irrelevant lines and filtered to retain only the top N failure types for simplification.
+- A custom train/test split function shuffles the data and splits it into features and labels for training and evaluation.
+
+ to ensure the data is clean, consistent.
+"""
+
 def load_breast_cancer():
    
     columns = [
